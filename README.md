@@ -123,29 +123,74 @@ Virtually all EDA tools use Tcl as their shell. The provided scripts keep their 
 
 ## 3. Homework rules (all assignments)
 
-- **Grading is by an in-lab exam.** Every homework has an in-lab exam, and **your grade for the homework is determined by the exam** — not by when you submitted.
-- **Submit before the lab session starts.** Your homework must be pushed to your branch **before the lab session in which you take its exam begins**. A push made after the session has started does not count, and you will not be allowed to take the exam. **No submission before the session — no exam.**
-- **Exam dates** are listed in the **course syllabus**, pinned in the `#important-resources` channel of the **DVD2026-27 Discord server**.
-- **Late exams:** for every week you take the exam after its scheduled date, **5 points are deducted** from that homework's grade:
+These rules follow the **course syllabus**, which is pinned in the `#important-resources` channel of the **DVD2026-27 Discord server**. If anything here conflicts with the syllabus, the syllabus wins.
 
-  | Exam taken | Deduction |
-  |------------|-----------|
-  | On the scheduled date | — |
-  | Up to 1 week late | −5 points |
-  | Up to 2 weeks late | −10 points |
-  | Up to 3 weeks late | −15 points |
-  | More than 3 weeks late | The exam can no longer be taken |
+### 3.1 Weight and grading
 
-  Extensions only under the special circumstances described in the syllabus.
-- **Interfaces are fixed.** Module names, port names and output-file formats given in an assignment are checked automatically — if they differ, the tests cannot run and you lose the points.
-- **Name and ID** must appear wherever the assignment asks for them (e.g. report headers). Missing or wrong details cost points.
-- The README of each homework repository is the complete specification of that assignment.
+Homework is **38%** of the course grade, and **submitting every assignment is mandatory**. To get a homework grade at all, you must submit all of them. The assignments are not equally weighted:
+
+| HW1 | HW2 | HW3 | HW4 | HW5 | HW6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 10% | 15% | 25% | 5% | 20% | 25% |
+
+Each assignment is graded in two parts:
+
+| Part | Weight | What is checked |
+|------|:------:|-----------------|
+| **Automatic grader** | 20% | Runs on your submission. It checks that you met the deadline and basic sanity checks: required files are present, interfaces and output formats are correct, and the results make sense. |
+| **In-lab evaluation** | 80% | In the **lab after the deadline**, the staff ask you questions about the assignment — both theory and your actual results, which you show and explain. |
+
+**A homework grade is given only after the in-lab evaluation.**
+
+### 3.2 Deadlines
+
+- **Deadline:** **Saturday night at 23:59** of the submission week. Due dates are in the syllabus timeline. **They are final and will not be moved.**
+- **Submitting is the entry ticket to the evaluation lab.** You will be evaluated only if your homework was pushed to your branch **before that lab session starts**. **No submission — no evaluation.**
+- **Late submission or missed evaluation:** if you missed the deadline, or were not present at the evaluation lab, submit and be evaluated in a following lab session. **Every week of delay costs 5 points off that assignment's grade** (out of 100):
+
+  | Evaluated in | Deduction from the assignment's grade |
+  |--------------|---------------------------------------|
+  | The lab after the deadline | — |
+  | 1 week later | −5 points |
+  | 2 weeks later | −10 points |
+  | 3 weeks later | −15 points |
+  | More than 3 weeks later | Evaluation is no longer possible |
+
+### 3.3 Extensions and excuses
+
+- **There are no extensions** other than for approved reasons: Miluim, your own wedding, death of a family member, birth, illness, and so on. The syllabus lists each case and its predetermined extension.
+- **Upload every excuse to the course excuses Google Form** (linked in the syllabus). The form is not answered: if you meet the criteria, the extension applies automatically. Do not ask the staff about it.
+- An excuse known in advance must be reported **before** it happens.
+
+### 3.4 Working in pairs
+
+- Assignments may be done **in pairs** — **highly recommended**. Groups of three or more are not approved.
+- Each pair designates **one representative**, who signs up through the course registration form with a GitHub account and gets access to the **DVD2027** organization.
+- Each pair submits **one branch**, named with the **representative's ID** (Section 4). Homework is run on the cloud account of one of the partners.
+- **Write both partners' names and IDs** wherever an assignment asks for a name and ID, e.g. report and output-file headers.
+- Wherever an assignment derives parameters from "your ID", use the **representative's ID** — the branch name.
+- **Both partners are evaluated in the lab**, and each must be able to explain the whole assignment.
+- Don't pair with someone who is expected to miss a lot of time with an excuse, such as Miluim. Miluimnikim should pair with each other or submit alone — no extensions are given for ignoring this.
+
+### 3.5 Assignment requirements
+
+- **The README of each homework repository is the complete specification** of that assignment.
+- **Interfaces are fixed.** The automatic grader depends on the exact module names, port names, file names and output formats. If yours differ, its checks fail.
+- **Name and ID** must appear wherever the assignment asks for them.
+
+### 3.6 Questions and communication
+
+- All discussion happens on the **course Discord server**. Each homework has its own channel (e.g. `#hw1`), and there are channels like `#technical-problems`.
+- Ask and answer questions in the right channel — helping your classmates is encouraged.
+- **Use the course chatbot first.** It was trained on the course material and on previous questions, and it can answer most of them. **The staff answer on Discord during lab hours only.**
+- For personal matters, open a **ticket** on the Discord server.
+- **Personal emails or WhatsApp messages to the staff are not answered.**
 
 ---
 
 ## 4. Submitting homework with Git
 
-Every assignment lives in its own repository under <https://github.com/DVD2027>. The `main` branch only contains a README; the assignment files are at tag **`v1.0`**. You submit by pushing **a branch named exactly your 9-digit ID number**.
+Every assignment lives in its own repository under <https://github.com/DVD2027>. The `main` branch only contains a README; the assignment files are at tag **`v1.0`**. Each pair submits by pushing **one branch named exactly the representative's 9-digit ID number** — the ID the representative registered with in the course sign-up form. In the commands below, `<ID_NUMBER>` is that ID.
 
 ```bash
 # 1. Enter your workspace and a course directory
@@ -169,7 +214,11 @@ git push origin <ID_NUMBER>
 
 **Rules**
 
-- The branch name must be **exactly** your ID number (e.g. `206123456`) — no prefixes, suffixes or names.
+- **Branch naming — mandatory, no exceptions:** the branch name must be **exactly** the representative's ID number.
+  - ✅ Correct: `206123456`
+  - ❌ Incorrect: `hw1-206123456`, `israel-branch`, `ID_206123456`, `206123456-hw`, or anything else with extra text or symbols
+  - Consistent branch names are what the automatic grader and the staff rely on. **A wrong branch name may cost points and, in severe cases, disqualify the homework.**
+- **One branch per pair**, in every assignment repository.
 - **Never push to `main`** or to any branch other than your own.
 - Commit only what the assignment asks for. Do not commit workspace clutter (`xcelium.d/`, `waves.shm/`, logs) — the provided `.gitignore` files already exclude most of it.
-- You can push as many times as you like, but **your final push must happen before the lab session of your exam starts** — the exam is based on the work in your branch at that time.
+- You can push as many times as you like. The automatic grader checks your branch **at the deadline (Saturday 23:59)**, and the in-lab evaluation is based on your branch **at the start of the evaluation lab**.
