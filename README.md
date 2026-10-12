@@ -192,6 +192,74 @@ Each assignment is graded in two parts:
 
 Every assignment lives in its own repository under <https://github.com/DVD2027>. The `main` branch only contains a README; the assignment files are at tag **`v1.0`**. Each pair submits by pushing **one branch named exactly the representative's 9-digit ID number** — the ID the representative registered with in the course sign-up form. In the commands below, `<ID_NUMBER>` is that ID.
 
+### 4.1 One-time setup: an SSH key for GitHub
+
+The course repositories are cloned and pushed over SSH (`git@github.com:...`), so the server account you work on needs an SSH key that is registered with the **representative's** GitHub account — the account that has access to the DVD2027 organization. You do this once; every later homework reuses the same key.
+
+**1. Check whether you already have a key**
+
+```bash
+ls ~/.ssh/id_ed25519.pub
+```
+
+If the file exists, skip to step 3.
+
+**2. Create a new key with `ssh-keygen`**
+
+```bash
+ssh-keygen -t ed25519 -C "<your GitHub email>"
+```
+
+- `Enter file in which to save the key` — press **Enter** to accept the default (`~/.ssh/id_ed25519`).
+- `Enter passphrase` — press **Enter** twice for no passphrase, or choose one (see the note on `ssh-agent` below).
+
+This creates two files: `~/.ssh/id_ed25519` is the **private** key — never share, copy or commit it — and `~/.ssh/id_ed25519.pub` is the **public** key, which goes to GitHub.
+
+**3. Add the public key to GitHub**
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copy the whole output line (it starts with `ssh-ed25519` and ends with your email). Then, logged in to the representative's GitHub account:
+
+1. Click your profile picture → **Settings** → **SSH and GPG keys** → **New SSH key**.
+2. **Title:** something recognizable, e.g. `DVD course server`. **Key type:** *Authentication Key*.
+3. Paste the line into **Key** and click **Add SSH key**.
+
+If the partners work on different server accounts, add each account's public key to the representative's GitHub account — an account can hold several keys.
+
+**4. Test the connection**
+
+```bash
+ssh -T git@github.com
+```
+
+The first time, SSH asks `Are you sure you want to continue connecting (yes/no)?` — type `yes`. On success you get:
+
+```text
+Hi <github-username>! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+**Troubleshooting**
+
+- `Permission denied (publickey)` — the public key is not on the GitHub account, or you pasted a different key. Repeat step 3 and check that `~/.ssh/id_ed25519.pub` matches the key listed on GitHub.
+- `ERROR: Repository not found` while cloning, although the test above works — the GitHub account is not (yet) a member of the DVD2027 organization. Accept the invitation e-mail, or check <https://github.com/DVD2027>.
+- If you set a passphrase and don't want to type it on every `git push`, load the key into the agent once per terminal: `eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519`.
+
+**5. Tell Git who you are**
+
+Every commit records an author name and e-mail. Set them once per server account:
+
+```bash
+git config --global user.name  "<Your Name>"
+git config --global user.email "<your GitHub email>"
+```
+
+Use the e-mail of your GitHub account, so your commits are linked to it on GitHub. Check the result with `git config --global --list`.
+
+### 4.2 Cloning and submitting
+
 ```bash
 # 1. Enter your workspace and a course directory
 tsmc65
