@@ -165,7 +165,8 @@ Each assignment is graded in two parts:
 ### 3.4 Working in pairs
 
 - Assignments may be done **in pairs** — **highly recommended**. Groups of three or more are not approved.
-- Each pair designates **one representative**, who signs up through the course registration form with a GitHub account and gets access to the **DVD2027** organization.
+- Each pair designates **one representative**, who signs up for the pair through the course registration form.
+- **Both partners** get access to the **DVD2027** organization, each with **their own GitHub account**.
 - Each pair submits **one branch**, named with the **representative's ID** (Section 4). Homework is run on the cloud account of one of the partners.
 - **Write both partners' names and IDs** wherever an assignment asks for a name and ID, e.g. report and output-file headers.
 - Wherever an assignment derives parameters from "your ID", use the **representative's ID** — the branch name.
@@ -194,7 +195,7 @@ Every assignment lives in its own repository under <https://github.com/DVD2027>.
 
 ### 4.1 One-time setup: an SSH key for GitHub
 
-The course repositories are cloned and pushed over SSH (`git@github.com:...`), so the server account you work on needs an SSH key that is registered with the **representative's** GitHub account — the account that has access to the DVD2027 organization. You do this once; every later homework reuses the same key.
+The course repositories are cloned and pushed over SSH (`git@github.com:...`), so you need an SSH key that is registered with your GitHub account — the account that has access to the DVD2027 organization. **Both partners — the representative and the partner — must do this setup**, each on their own server account and with their own GitHub account, so either of you can clone and push the pair's branch. You do this once; every later homework reuses the same key.
 
 **1. Check whether you already have a key**
 
@@ -221,13 +222,11 @@ This creates two files: `~/.ssh/id_ed25519` is the **private** key — never sha
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Copy the whole output line (it starts with `ssh-ed25519` and ends with your email). Then, logged in to the representative's GitHub account:
+Copy the whole output line (it starts with `ssh-ed25519` and ends with your email). Then, logged in to your own GitHub account:
 
 1. Click your profile picture → **Settings** → **SSH and GPG keys** → **New SSH key**.
 2. **Title:** something recognizable, e.g. `DVD course server`. **Key type:** *Authentication Key*.
 3. Paste the line into **Key** and click **Add SSH key**.
-
-If the partners work on different server accounts, add each account's public key to the representative's GitHub account — an account can hold several keys.
 
 **4. Test the connection**
 
