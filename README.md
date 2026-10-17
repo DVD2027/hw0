@@ -144,7 +144,7 @@ Each assignment is graded in two parts:
 
 ### 3.2 Deadlines
 
-- **Deadline:** **Saturday night at 23:59** of the submission week. Due dates are in the syllabus timeline. **They are final and will not be moved.**
+- **Deadline:** **Sunday night at 23:59** of the submission week. Due dates are in the syllabus timeline. **They are final and will not be moved.**
 - **Submitting is the entry ticket to the evaluation lab.** You will be evaluated only if your homework was pushed to your branch **before that lab session starts**. **No submission — no evaluation.**
 - **Late submission or missed evaluation:** if you missed the deadline, or were not present at the evaluation lab, submit and be evaluated in a following lab session. **Every week of delay costs 5 points off that assignment's grade** (out of 100):
 
@@ -288,4 +288,4 @@ git push origin <ID_NUMBER>
 - **One branch per pair**, in every assignment repository.
 - **Never push to `main`** or to any branch other than your own.
 - Commit only what the assignment asks for. Do not commit workspace clutter (`xcelium.d/`, `waves.shm/`, logs) — the provided `.gitignore` files already exclude most of it.
-- You can push as many times as you like. The automatic grader checks your branch **at the deadline (Saturday 23:59)**, and the in-lab evaluation is based on your branch **at the start of the evaluation lab**.
+- You can push as many times as you like. The automatic grader checks your branch **at the deadline (Sunday 23:59)**, and the in-lab evaluation is based on your branch **at the start of the evaluation lab**.
